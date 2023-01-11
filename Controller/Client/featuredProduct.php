@@ -1,11 +1,6 @@
 <?php
-    $hostname = "localhost";
-    $username = "user_dktStore";
-    $password = "Pvdat14092001a@";
-    $database = "dkt_Store";
-    $connection = mysqli_connect($hostname, $username, $password, $database);
-    if ($connection)
-        mysqli_set_charset($connection, "UTF8");
+    $db = new Database();
+    $connection = $db->connection;
 
     $query = "SELECT * FROM `tbl_product` p JOIN `tbl_order_detail` o ON p.pk_product_id = o.fk_product_id ORDER BY o.c_number DESC LIMIT 4";
     $m_result = mysqli_query($connection, $query);

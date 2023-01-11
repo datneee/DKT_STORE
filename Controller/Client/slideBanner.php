@@ -1,11 +1,6 @@
 <?php
-    $hostname = "localhost";
-    $username = "user_dktStore";
-    $password = "Pvdat14092001a@";
-    $database = "dkt_Store";
-    $connection = mysqli_connect($hostname, $username, $password, $database);
-    if ($connection)
-        mysqli_set_charset($connection, "UTF8");
+    $db = new Database();
+    $connection = $db->connection;
 
     $query = "SELECT * FROM `tbl_slide`";
     $m_result = mysqli_query($connection, $query);

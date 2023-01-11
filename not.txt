@@ -5,12 +5,12 @@ Các chức năng của website demo:
 	- Login
 	- Logout
 	1.1. Trang chủ
-	- Xem danh sách danh mục sản phẩm
-	- Xem sản phẩm hot 
-	- Xem sản phẩm nổi bật 
-	- Slide banner 
+	- Xem danh sách danh mục sản phẩm --
+	- Xem sản phẩm hot --
+	- Xem sản phẩm nổi bật -- 
+	- Slide banner --
 	- Xem số lượng sản phẩm có trong giỏ hàng 
-	- Slide tin tức	
+	- Slide tin tức	--
 	- Tìm kiếm theo tên
 	
 	1.2. Tin tức 

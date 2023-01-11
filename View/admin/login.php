@@ -1,4 +1,3 @@
-
 <div class="content">
     <div class="container">
         <div class="row">
@@ -20,6 +19,7 @@
                                         <label>Mật khẩu:<b id="req">*</b></label>
                                         <input type="password" class="input-control" name="password" required="">
                                     </div>
+                                    <div style="margin: 8px 0; background: transparent;" class="alert-danger"><?php if ($mess) echo $mess ?></div>
                                     <input type="submit" class="button" value="Đăng nhập">
                                 </form>
                             </div>
@@ -28,7 +28,7 @@
                             <div class="wrapper-form">
                                 <p class="title"><span>Tạo tài khoản mới</span></p>
                                 <p>Đăng ký tài khoản để mua hàng nhanh hơn. Theo dõi đơn đặt hàng, vận chuyển. Cập nhật các sự kiện và chương trình giảm giá của chúng tôi.</p>
-                                <a href="account/registerr" class="button">Đăng ký</a> </div>
+                                <a href="?page=register" class="button">Đăng ký</a> </div>
                         </div>
                     </div>
                 </div>
@@ -39,3 +39,4 @@
 
     </div>
 </div>
+

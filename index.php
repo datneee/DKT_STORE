@@ -1,11 +1,12 @@
 <?php
 
     session_start();
-    require_once (__DIR__."/Config/config.php");
-    require_once (__DIR__ . "/Config/router.php");
+    include_once (__DIR__."/Config/config.php");
+    include 'Model/DbConfig.php';
+    include 'Config/router.php';
 
-
-
+    $route = new Router();
+    $route = $route->pageController;
     include "View/client/layout.php";
     /*if ($_SESSION["username"] != null) {
         if ($_SESSION["role"] == "client") {

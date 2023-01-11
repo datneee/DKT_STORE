@@ -50,12 +50,12 @@
             <div class="row">
                 <div class="col-xs-12 col-sm-6 col-md-6"> <span><i class="fa fa-phone"></i> (04) 6674 2332</span> <span><i class="fa fa-envelope-o"></i> <a href="mailto:support@mail.com">support@mail.com</a></span> </div>
                 <?php
-                    if (!in_array("username", $_SESSION)) {
+                    if (!isset($_SESSION["username"])) {
                 ?>
-                <div class="col-xs-12 col-sm-6 col-md-6 customer"> <a href="account?login=true"><i class="fa fa-user"></i> Đăng nhập</a> <a href="account?register=true"><i class="fa fa-user-plus"></i> Đăng ký</a> </div>
+                <div class="col-xs-12 col-sm-6 col-md-6 customer"> <a href="?page=login"><i class="fa fa-user"></i> Đăng nhập</a> <a href="?page=register"><i class="fa fa-user-plus"></i> Đăng ký</a> </div>
                 <?php } else { ?>
 
-                <div style="display: flex; justify-content: end" class="col-xs-12 col-sm-6 col-md-6 customer"> <p><b><?php echo $_SESSION["username"] ?></b></p> &nbsp; | &nbsp; <a href="account?logout=true"><i class="fa fa-user"></i> Đăng xuất</a> </div>
+                <div style="display: flex; justify-content: end" class="col-xs-12 col-sm-6 col-md-6 customer"> <p><b><?php echo $_SESSION["username"] ?></b></p> &nbsp; | &nbsp; <a href="?page=logout"><i class="fa fa-user"></i> Đăng xuất</a> </div>
                 <?php } ?>
             </div>
         </div>
@@ -73,7 +73,7 @@
                     </form>
                 </div>
                 <?php
-                if (in_array("username", $_SESSION)) {
+                if (isset($_SESSION["username"])) {
                 ?>
                     <div class="col-xs-12 col-sm-12 col-md-3 mini-cart">
                         <div class="wrapper-mini-cart"> <span class="icon"><i class="fa fa-shopping-cart"></i></span> <a href="cart"> <span class="mini-cart-count">0</span> sản phẩm <i class="fa fa-caret-down"></i></a>
@@ -191,20 +191,32 @@
                 <!--Content -->
 
                 <?php
-                //if (file_exists("Controller/Client/content_layout.php"))
-                switch ($url[0]) {
-                    case "":
-                        include "Controller/Client/content_layout.php";
-                        break;
-                    case "home":
-                        include "Controller/Client/content_layout.php";
-                        break;
-                    case "account":
-                        include "Controller/admin/login.php";
-                        break;
-                }
 
-
+                    /*switch ($route) {
+                        case 'home':
+                            if (file_exists("Controller/Client/content_layout.php"))
+                                include "Controller/Client/content_layout.php";
+                            break;
+                        case 'login':
+                            if (file_exists("Controller/admin/login.php"))
+                                include "Controller/admin/login.php";
+                            break;
+                        case 'register':
+                            if (file_exists("Controller/admin/register.php"))
+                                include "Controller/admin/register.php";
+                            break;
+                        case 'logout':
+                            if (file_exists("Controller/admin/logout.php"))
+                                include "Controller/admin/logout.php";
+                            break;
+                        case '404':
+                            echo "Trang không tồn tại !";
+                            break;
+                        default:
+                            break;
+                    }*/
+                if (file_exists("Controller/Client/products.php"))
+                    include "Controller/Client/products.php";
                 ?>
 
                 <!-- Hot product -->

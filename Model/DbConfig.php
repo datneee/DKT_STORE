@@ -4,8 +4,8 @@
         private $username = "user_dktStore";
         private $password = "Pvdat14092001a@";
         private $database = "dkt_Store";
-        private $connection = NULL;
-        private $result = NULL;
+        public $connection = NULL;
+        public $result = NULL;
 
         public function __construct()
         {
