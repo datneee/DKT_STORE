@@ -8,7 +8,10 @@
             $categories[] = $data;
         }
     }
-
+    $categoryActived = isset($_GET["category"]) ? $_GET["category"] : '';
+    if ($categoryActived) {
+        $categoryActived = $categoryActived;
+    }
     mysqli_close($db->connection);
     include "View/client/categories.php";
 

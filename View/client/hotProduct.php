@@ -8,25 +8,26 @@
         <div id="content-tabb1" class="content-tab content-tab-proindex" style="display:none">
             <div class="clearfix">
                 <?php
-                    foreach ($hotProducts as $hotProduct) {
-                ?>
+                foreach ($hotProducts as $product) {
+                    ?>
                     <!-- box product -->
-                    <div class="col-xs-6 col-md-3 col-sm-6 ">
-                        <div class="product-grid" id="product-1168979">
-                            <div class="image"> <a href="apple-iphone-6s-plus-rose-gold-128gb"><img src="public/upload/product/<?php echo $hotProduct["c_img"] ?>" title="<?php echo $hotProduct["c_content"] ?>" alt="<?php echo $hotProduct["c_content"] ?>" class="img-responsive"></a> </div>
+                    <div class="col-xs-6 col-sm-4 col-md-3 ">
+                        <div class="product-grid product-loop" id="product-1142079">
+                            <a href="<?php echo explode('&',PATH)[0] ?>?product=<?php echo $product["pk_product_id"]  ?>" class="image"> <img src="public/upload/product/<?php echo $product["c_img"] ?>" title="<?php echo $product["c_name"] ?>" alt="<?php echo $featuredProduct["c_name"] ?>" class="img-responsive"></a>
                             <div class="info">
-                                <h3 class="name"><a href="apple-iphone-6s-plus-rose-gold-128gb"><?php echo $hotProduct["c_name"] ?></a></h3>
-                                <p class="price-box"> <span class="special-price"> <span class="price product-price"> <?php echo $hotProduct["c_price"] ?> </span> </span> </p>
+                                <h3 class="name"><a href="<?php echo explode('&',PATH)[0] ?>?product=<?php echo $product["pk_product_id"]  ?>"><?php echo $product["c_name"] ?></a></h3>
+                                <p class="price-box"> <span class="special-price"> <span class="price product-price"> <?php echo $product["c_price"] ?> </span> </span> </p>
                                 <div class="action-btn">
-                                    <form action="cart/add" method="post" enctype="multipart/form-data" id="product-actions-1168979">
-                                        <a href="apple-iphone-6s-plus-rose-gold-128gb" class="button">Chọn sản phẩm</a>
+                                    <form action="cart/add" method="post" enctype="multipart/form-data" id="product-actions-1142079">
+                                        <input type="hidden" name="variantId" value="1777262" />
+                                        <button class="button add-cart"><a href="123123">mua hàng</a> </button>
                                     </form>
                                 </div>
                             </div>
                         </div>
                     </div>
-                <?php } ?>
                     <!-- end box product -->
+                <?php } ?>
             </div>
         </div>
     </div>
