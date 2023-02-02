@@ -33,7 +33,7 @@
                             <div class="action-btn">
                                 <form action="cart/add" method="post" enctype="multipart/form-data" id="product-actions-1142079">
                                     <input type="hidden" name="variantId" value="1777262" />
-                                    <button class="button add-cart"><a href="123123">mua hàng</a> </button>
+                                    <button class="button add-cart"><a href="checkout?product-one=<?php echo $product["pk_product_id"] ?>">mua ngay</a> </button>
                                 </form>
                             </div>
                         </div>

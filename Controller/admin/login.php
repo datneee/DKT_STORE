@@ -1,11 +1,11 @@
 <?php
+
     $db = new Database();
     $mess = '';
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        $c_username =$_POST["username"];
-        $c_password =$_POST["password"];
-
-        $queryGetUserByUsername = "SELECT * FROM `tbl_user` u WHERE u.c_username = '$c_username' ";
+        $c_email = isset($_POST["email"]) ? $_POST["email"] : '';
+        $c_password = isset($_POST["password"]) ? $_POST["password"] : '';
+        $queryGetUserByUsername = "SELECT * FROM `tbl_user` u WHERE u.c_email = '$c_email' AND u.c_role = 'admin' ";
         $result = mysqli_query($db->connection, $queryGetUserByUsername);
         $user = null;
         if ($result) {
@@ -13,17 +13,18 @@
                 $user = $data;
             }
         }
+        echo var_export($user);
         if ($user) {
             if ($user->c_password == md5($c_password)) {
-                $_SESSION["username"] = $user->c_username;
-                header("location:index.php");
+                $_SESSION["admin"] = $user;
+                header("location:admin");
             } else {
                 $mess = "Mật khẩu không chính xác !";
-                header("loacation:?page=login");
+                header("location:admin?page=login");
             }
         } else {
             $mess = "Tài khoản không ồn tại";
-            header("loacation:?page=login");
+            header("location:admin?page=login");
         }
 
 
@@ -32,5 +33,4 @@
 
     mysqli_close($db->connection);
     include "View/admin/login.php";
-
 ?>

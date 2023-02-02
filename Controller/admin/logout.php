@@ -1,4 +1,4 @@
 <?php
-    unset($_SESSION["username"]);
-    header("location:index.php");
+    unset($_SESSION["admin"]);
+    header("location:admin");
 ?>

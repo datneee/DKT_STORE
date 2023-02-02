@@ -7,16 +7,11 @@
 
     $route = new Router();
     $route = $route->pageController;
-    include "View/client/layout.php";
-    /*if ($_SESSION["username"] != null) {
-        if ($_SESSION["role"] == "client") {
-            include "View/client/content_layout.php";
-        } else
-            include "View/admin/content_layout.php";
+    if ($route == "admin") {
+        if (file_exists("Controller/admin/layout.php"))
+            include "Controller/admin/layout.php";
     } else {
-        include "View/admin/login.php";
-    }*/
-    //$db = new Database();
+        include "View/client/layout.php";
+    }
 
-    //echo $db->execute("SELECT * FROM `tbl_user`");
 

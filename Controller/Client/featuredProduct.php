@@ -2,7 +2,7 @@
     $db = new Database();
     $connection = $db->connection;
 
-    $query = "SELECT * FROM `tbl_product` p JOIN `tbl_order_detail` o ON p.pk_product_id = o.fk_product_id ORDER BY o.c_number DESC LIMIT 4";
+    $query = "SELECT *, COUNT(c_number) FROM `tbl_product` p JOIN `tbl_order_detail` o ON p.pk_product_id = o.fk_product_id GROUP BY p.pk_product_id ORDER BY COUNT(c_number) DESC LIMIT 4";
     $m_result = mysqli_query($connection, $query);
     $featuredProducts = array();
     if ($m_result) {

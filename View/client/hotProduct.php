@@ -18,9 +18,9 @@
                                 <h3 class="name"><a href="<?php echo explode('&',PATH)[0] ?>?product=<?php echo $product["pk_product_id"]  ?>"><?php echo $product["c_name"] ?></a></h3>
                                 <p class="price-box"> <span class="special-price"> <span class="price product-price"> <?php echo $product["c_price"] ?> </span> </span> </p>
                                 <div class="action-btn">
-                                    <form action="cart/add" method="post" enctype="multipart/form-data" id="product-actions-1142079">
+                                    <form action="" method="post" enctype="multipart/form-data" id="product-actions-1142079">
                                         <input type="hidden" name="variantId" value="1777262" />
-                                        <button class="button add-cart"><a href="123123">mua hàng</a> </button>
+                                        <button class="button add-cart"><a href="checkout?product-one=<?php echo $product["pk_product_id"] ?>">mua ngay</a> </button>
                                     </form>
                                 </div>
                             </div>

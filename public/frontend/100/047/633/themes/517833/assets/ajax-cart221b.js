@@ -38,12 +38,12 @@
 						dataType: "json",
 						success: function(n) {
 							$(".ajax-success-modal").find(".ajax-product-title").text(i);
-							$(".ajax-success-modal").find(".ajax-product-image").attr("src", s);					
-							
+							$(".ajax-success-modal").find(".ajax-product-image").attr("src", s);
+
 							t.showModal(".ajax-success-modal");
 							t.updateDropdownCart()
 						},
-						error: function(n, r) {						
+						error: function(n, r) {
 							$('.ajax-error-message').text($.parseJSON(n.responseText).description);
 							t.showModal('.ajax-error-modal');
 

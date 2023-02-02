@@ -8,7 +8,7 @@
             ?>
             <div class="col-xs-6 col-sm-4 col-md-6 ">
                 <div class="product-grid product-loop"">
-                    <a href="/mua-iphone-6s-va-iphone-6s-plus-chinh-hang-o-dau" class="image"> <img src="public/upload/news/<?php echo $new["c_img"] ?>" alt="<?php echo $new["c_name"] ?>" title="<?php echo $new["c_name"] ?>" class="img-responsive">
+                    <a href="/news?code=<?php echo $new['pk_news_id'] ?>" class="image"> <img src="public/upload/news/<?php echo $new["c_img"] ?>" alt="<?php echo $new["c_name"] ?>" title="<?php echo $new["c_name"] ?>" class="img-responsive">
                         <h3 style="word-wrap: break-word; white-space: normal;overflow: hidden; display: -webkit-box; text-overflow: ellipsis; -webkit-box-orient: vertical; -webkit-line-clamp: 2; padding: 0 2px"><?php echo $new["c_name"] ?></h3>
                         <p class="date"><?php $now = new DateTime(); echo $now->format('Y-m-d'); ?></p>
                         <!--<p class="desc"><?php /*echo $new["c_description"] */?></p>-->

@@ -1,5 +1,42 @@
 <?php
-    $rou = $route;
+$rou = $route;
+if (isset($_SESSION["username"])) {
+    $db = new Database();
+    $user_email = $_SESSION["username"];
+    $queryGetUserByUsername = "SELECT * FROM `tbl_customer` u WHERE u.email = '$user_email' ";
+    $result = mysqli_query($db->connection, $queryGetUserByUsername);
+    $user = null;
+    if ($result) {
+        while ($data = mysqli_fetch_object($result)) {
+            $user = $data;
+        }
+    }
+    $userId = $user->customer_id;
+    $querySelectOrder = "SELECT * FROM `tbl_order` o JOIN `tbl_order_detail` d ON o.order_id = d.order_id JOIN `tbl_product` p ON d.fk_product_id = p.pk_product_id WHERE o.customer_id = $userId GROUP BY d.fk_product_id";
+    $resultOrder = mysqli_query($db->connection, $querySelectOrder);
+    $ordersDetail = array();
+
+    if ($resultOrder) {
+        while ($data = mysqli_fetch_array($resultOrder)) {
+            $ordersDetail[] = $data;
+        }
+    }
+
+
+    $method = isset($_GET["action"]) ? $_GET["action"] : '';
+    $idWillDelete = isset($_GET["productId"]) ? $_GET["productId"] : '';
+    $orderIdWillDelete = isset($_GET["orderId"]) ? $_GET["orderId"] : '';
+
+    if ($method == "deleteCartItem" && $idWillDelete && $orderIdWillDelete) {
+        $queryDeleteCartItem = "DELETE FROM `tbl_order_detail` od WHERE od.fk_product_id = $idWillDelete AND od.order_id = $orderIdWillDelete";
+
+        $result = mysqli_query($db->connection, $queryDeleteCartItem);
+        if ($result) {
+            header("location:index.php");
+        }
+    }
+    mysqli_close($db->connection);
+}
 
 
 ?>
@@ -10,7 +47,7 @@
 <head>
     <title>DKT Store</title>
     <meta charset="utf-8">
-    <link rel="stylesheet" type="text/css" href="public/backend/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="public/backend/css/bootstrap.css">
 
     <link rel="canonical" href="index.html">
     <link rel="shortcut icon"
@@ -49,19 +86,19 @@
 
 </script>
 <!-- header -->
-<header id="header">
+<header  id="header">
     <!-- top header -->
     <div class="top-header">
         <div class="container">
             <div class="row">
                 <div class="col-xs-12 col-sm-6 col-md-6"> <span><i class="fa fa-phone"></i> (04) 6674 2332</span> <span><i class="fa fa-envelope-o"></i> <a href="mailto:support@mail.com">support@mail.com</a></span> </div>
                 <?php
-                    if (!isset($_SESSION["username"])) {
-                ?>
-                <div class="col-xs-12 col-sm-6 col-md-6 customer"> <a href="?page=login"><i class="fa fa-user"></i> Đăng nhập</a> <a href="?page=register"><i class="fa fa-user-plus"></i> Đăng ký</a> </div>
+                if (! isset($_SESSION["username"])) {
+                    ?>
+                    <div class="col-xs-12 col-sm-6 col-md-6 customer"> <a href="?page=login"><i class="fa fa-user"></i> Đăng nhập</a> <a href="?page=register"><i class="fa fa-user-plus"></i> Đăng ký</a> </div>
                 <?php } else { ?>
 
-                <div style="display: flex; justify-content: end" class="col-xs-12 col-sm-6 col-md-6 customer"> <p><b><?php echo $_SESSION["username"] ?></b></p> &nbsp; | &nbsp; <a href="?page=logout"><i class="fa fa-user"></i> Đăng xuất</a> </div>
+                    <div style="display: flex; justify-content: end" class="col-xs-12 col-sm-6 col-md-6 customer"> <p><b><?php echo $user->hovaten ?></b></p> &nbsp; | &nbsp; <a href="?page=logout"><i class="fa fa-user"></i> Đăng xuất</a> </div>
                 <?php } ?>
             </div>
         </div>
@@ -78,44 +115,33 @@
                         <button  type="submit"> <i class="fa fa-search"></i> </button>
                     </form>
                 </div>
-                <?php
-                if (isset($_SESSION["username"])) {
-                    $db = new Database();
-                    $usernameValid = $_SESSION["username"];
-                    $queryGetUserByUsername = "SELECT * FROM `tbl_user` u WHERE u.c_username = '$usernameValid' ";
-                    $result = mysqli_query($db->connection, $queryGetUserByUsername);
-                    $user = null;
-                    if ($result) {
-                        while ($data = mysqli_fetch_object($result)) {
-                            $user = $data;
-                        }
-                    }
-                    $userId = $user->pk_user_id;
-                    $querySelectOrder = "SELECT * FROM `tbl_order` o WHERE o.customer_id = $userId";
-                    $resultOrder = mysqli_query($db->connection, $querySelectOrder);
-                    $orders = array();
-
-                    if ($resultOrder) {
-                        while ($data = mysqli_fetch_array($resultOrder)) {
-                            $orders = $data;
-                        }
-                    }
-                    $sumPrice = 9999;
-                    /*foreach ($orders as $order ) {
-                        $sumPrice += floatval($order["gia"]);
-                    }*/
-                ?>
+                <?php if (isset($_SESSION["username"])) { ?>
                     <div class="col-xs-12 col-sm-12 col-md-3 mini-cart">
-                        <div class="wrapper-mini-cart"> <span class="icon"><i class="fa fa-shopping-cart"></i></span> <a href="cart"> <span class="mini-cart-count"><?php echo count($orders) ?></span> sản phẩm <i class="fa fa-caret-down"></i></a>
+                        <div class="wrapper-mini-cart"> <span class="icon"><a href="cart"><i style="color: #ffff" class="fa fa-shopping-cart"></i></a></span> <a href="cart"> <span class="mini-cart-count"><?php if (isset($_SESSION['carts'])) { echo count($_SESSION['carts']); } else echo 0;?></span> sản phẩm <i class="fa fa-caret-down"></i></a>
                             <div class="content-mini-cart">
-                                <div class="has-items">
-                                    <ul class="list-unstyled">
-                                    </ul>
-                                    <div class="total clearfix"> <span class="pull-left">Tổng tiền:</span> <span class="pull-right total-price"><?php echo $sumPrice ?></span> </div>
-                                    <a href="checkout" class="button">Thanh toán</a> </div>
-                                <div class="no-item">
-                                    <p style="text-align:left">Không có sản phẩm nào trong giỏ hàng của bạn.</p>
-                                </div>
+                                <?php if( isset($_SESSION['carts']) && count($_SESSION['carts']) > 0) {?>
+                                    <div class="has-items">
+                                        <ul class="list-unstyled">
+                                            <?php
+                                            foreach ($_SESSION['carts'] as $cartItem) {
+                                                ?>
+                                                <li class="clearfix" id="item-1853038">
+                                                    <div class="image"> <a href="index.php?controller=product_detail&id=5"> <img alt="Sản phẩm 2" src="public/upload/product/<?php echo $cartItem["c_img"] ?>" title="Sản phẩm 2" class="img-responsive"> </a> </div>
+                                                    <div class="info">
+                                                        <h3><a href="index.php?product=<?php echo $cartItem['pk_product_id'] ?>"><?php echo $cartItem["c_name"]?></a></h3>
+                                                        <p><?php echo $cartItem["quantity"] . ' x ' . $cartItem["c_price"]?>đ</p>
+                                                    </div>
+                                                    <div> <a href="cart?action=delete&code=<?php echo $cartItem["pk_product_id"] ?>"> <i class="fa fa-times"></i></a> </div>
+
+                                                </li>
+                                            <?php  } ?>
+                                        </ul>
+                                        <a href="checkout" class="button">Thanh toán</a> </div>
+                                <?php } else { ?>
+                                    <div class="no-item">
+                                        <p style="text-align:left">Không có sản phẩm nào trong giỏ hàng của bạn.</p>
+                                    </div>
+                                <?php } ?>
                             </div>
                         </div>
                     </div>
@@ -167,9 +193,9 @@
             <div class="col-xs-12 col-md-3">
                 <!-- category product -->
                 <?php
-                    if (file_exists("Controller/Client/categories.php")) {
-                        include "Controller/Client/categories.php";
-                    }
+                if (file_exists("Controller/Client/categories.php")) {
+                    include "Controller/Client/categories.php";
+                }
                 ?>
                 </aside>
                 <!-- end category product -->
@@ -197,101 +223,113 @@
                 <!-- hot news -->
                 <div class="home-blog">
                     <?php
-                        if (file_exists("Controller/Client/hotnew.php"))  {
-                            include  "Controller/Client/hotnew.php";
+                    if (file_exists("Controller/Client/hotnew.php"))  {
+                        include  "Controller/Client/hotnew.php";
                     }
                     ?>
-                <!-- end hot news -->
-                <!-- adv -->
-                <img src="../../public/frontend/images/banner03d5.jpg">
-                <!-- end adv -->
+                    <!-- end hot news -->
+                    <!-- adv -->
+                    <img src="../../public/frontend/images/banner03d5.jpg">
+                    <!-- end adv -->
 
-            </div>
-            <div class="col-xs-12 col-md-9">
-                <!-- main -->
-                <!--Slider banner -->
-                <?php
+                </div>
+                <div class="col-xs-12 col-md-9">
+                    <!-- main -->
+                    <!--Slider banner -->
+                    <?php
                     if (file_exists("Controller/Client/slideBanner.php")) {
                         include "Controller/Client/SlideBanner.php";
                     }
-                ?>
-                <!--End Slider banner -->
-                <!-- ============================ -->
-                <!--Content -->
+                    ?>
+                    <!--End Slider banner -->
+                    <!-- ============================ -->
+                    <!--Content -->
 
-                <?php
-                        switch ($rou) {
-                            case 'home':
-                                if (file_exists("Controller/Client/content_layout.php"))
-                                    include "Controller/Client/content_layout.php";
-                                break;
-                            case 'search':
-                                if (file_exists("Controller/Client/search.php"))
-                                    include "Controller/Client/search.php";
-                                break;
-                            case 'product':
-                                if (file_exists("Controller/Client/productDetail.php"))
-                                    include "Controller/Client/productDetail.php";
-                                break;
-                            case 'categories':
-                                if (file_exists("Controller/Client/products.php"))
-                                    include "Controller/Client/products.php";
-                                break;
-                            case 'gioi-thieu':
-                                if (file_exists("Controller/Client/gioiThieu.php"))
-                                    include "Controller/Client/gioiThieu.php";
-                                break;
-                            case 'contact':
-                                if (file_exists("Controller/Client/contact.php"))
-                                    include "Controller/Client/contact.php";
-                                break;
-                            case 'tin-tuc':
-                                if (file_exists("Controller/Client/tinTuc.php"))
-                                    include "Controller/Client/tinTuc.php";
-                                break;
-                            case 'login':
-                                if (file_exists("Controller/admin/login.php"))
-                                    include "Controller/admin/login.php";
-                                break;
-                            case 'register':
-                                if (file_exists("Controller/admin/register.php"))
-                                    include "Controller/admin/register.php";
-                                break;
-                            case 'logout':
-                                if (file_exists("Controller/admin/logout.php"))
-                                    include "Controller/admin/logout.php";
-                                break;
-                            case '404':
-                                echo "Trang không tồn tại !";
-                                break;
-                            default:
-                                break;
+                    <?php
+                    switch ($rou) {
+                        case 'home':
+                            if (file_exists("Controller/Client/content_layout.php"))
+                                include "Controller/Client/content_layout.php";
+                            break;
+                        case 'search':
+                            if (file_exists("Controller/Client/search.php"))
+                                include "Controller/Client/search.php";
+                            break;
+                        case 'product':
+                            if (file_exists("Controller/Client/productDetail.php"))
+                                include "Controller/Client/productDetail.php";
+                            break;
+                        case 'cart':
+                            if (file_exists("Controller/Client/cart.php"))
+                                include "Controller/Client/cart.php";
+                            break;
+                        case 'checkout':
+                            if (file_exists("Controller/Client/checkout.php"))
+                                include "Controller/Client/checkout.php";
+                            break;
+                        case 'checkout-submit':
+                            if (file_exists("Controller/Client/checkoutSubmit.php"))
+                                include "Controller/Client/checkoutSubmit.php";
+                            break;
+                        case 'categories':
+                            if (file_exists("Controller/Client/products.php"))
+                                include "Controller/Client/products.php";
+                            break;
+                        case 'gioi-thieu':
+                            if (file_exists("Controller/Client/gioiThieu.php"))
+                                include "Controller/Client/gioiThieu.php";
+                            break;
+                        case 'contact':
+                            if (file_exists("Controller/Client/contact.php"))
+                                include "Controller/Client/contact.php";
+                            break;
+                        case 'tin-tuc':
+                            if (file_exists("Controller/Client/tinTuc.php"))
+                                include "Controller/Client/tinTuc.php";
+                            break;
+                        case 'login':
+                            if (file_exists("Controller/Client/login.php"))
+                                include "Controller/Client/login.php";
+                            break;
+                        case 'register':
+                            if (file_exists("Controller/Client/register.php"))
+                                include "Controller/Client/register.php";
+                            break;
+                        case 'logout':
+                            if (file_exists("Controller/Client/logout.php"))
+                                include "Controller/Client/logout.php";
+                            break;
+                        case '404':
+                            echo "Trang không tồn tại !";
+                            break;
+                        default:
+                            break;
 
                     }
-                ?>
+                    ?>
 
-                <!-- Hot product -->
-                <?php
-                //if (file_exists("Controller/Client/hotProduct.php"))
+                    <!-- Hot product -->
+                    <?php
+                    //if (file_exists("Controller/Client/hotProduct.php"))
                     //include "Controller/Client/hotProduct.php";
-                ?>
+                    ?>
 
-                <!-- Featured product -->
+                    <!-- Featured product -->
 
 
-                <?php
+                    <?php
                     //if (file_exists("Controller/Client/featuredProduct.php")) {
-                        //include  "Controller/Client/featuredProduct.php";
+                    //include  "Controller/Client/featuredProduct.php";
                     //}
-                ?>
+                    ?>
 
-                <!--End content -->
+                    <!--End content -->
 
 
-                <!-- end main -->
+                    <!-- end main -->
+                </div>
+
             </div>
-
-        </div>
             <!-- adv -->
             <div class="widebanner"> <a href="#"><img src="public/frontend/100/047/633/themes/517833/assets/widebanner221b.jpg?1481775169361" alt="#" class="img-responsive"></a> </div>
             <!-- end adv -->
@@ -384,41 +422,41 @@
                 </div>
             </div>
         </footer>>
-</div>
-
-
-<script src='../../public/frontend/100/047/633/themes/517833/assets/owl.carousel.min221b.js?1481775169361'
-        type='text/javascript'></script>
-<script src='../../public/frontend/100/047/633/themes/517833/assets/responsive-menu221b.js?1481775169361'
-        type='text/javascript'></script>
-<script src='../../public/frontend/100/047/633/themes/517833/assets/elevate-zoom221b.js?1481775169361'
-        type='text/javascript'></script>
-<script src='../../public/frontend/100/047/633/themes/517833/assets/main221b.js?1481775169361'
-        type='text/javascript'></script>
-<script src='../../public/frontend/100/047/633/themes/517833/assets/ajax-cart221b.js?1481775169361'
-        type='text/javascript'></script>
-<div class="ajax-error-modal modal">
-    <div class="modal-inner">
-        <div class="ajax-error-title">Lỗi</div>
-        <div class="ajax-error-message"></div>
     </div>
-</div>
-<div class="ajax-success-modal modal">
-    <div class="overlay"></div>
-    <div class="content col-xs-12">
-        <div class="ajax-left"><img class="ajax-product-image" alt="&nbsp;" src="#"
-                                    style="max-width:65px; max-height:100px"/></div>
-        <div class="ajax-right">
-            <p class="ajax-product-title"></p>
-            <p class="success-message btn-go-to-cart"><span style="color:#789629">&#10004;</span> Đã được thêm vào giỏ
-                hàng.</p>
-            <div class="actions">
-                <!--                <button class="button" onclick="window.location='cart'">Đi tới giỏ hàng</button>-->
-                <!--                <button class="button" onclick="window.location='checkout'">Thanh toán</button>-->
-            </div>
+
+
+    <script src='../../public/frontend/100/047/633/themes/517833/assets/owl.carousel.min221b.js?1481775169361'
+            type='text/javascript'></script>
+    <script src='../../public/frontend/100/047/633/themes/517833/assets/responsive-menu221b.js?1481775169361'
+            type='text/javascript'></script>
+    <script src='../../public/frontend/100/047/633/themes/517833/assets/elevate-zoom221b.js?1481775169361'
+            type='text/javascript'></script>
+    <script src='../../public/frontend/100/047/633/themes/517833/assets/main221b.js?1481775169361'
+            type='text/javascript'></script>
+    <!--<script src='../../public/frontend/100/047/633/themes/517833/assets/ajax-cart221b.js?1481775169361'
+            type='text/javascript'></script>-->
+    <div class="ajax-error-modal modal">
+        <div class="modal-inner">
+            <div class="ajax-error-title">Lỗi</div>
+            <div class="ajax-error-message"></div>
         </div>
-        <a href="javascript:void(0)" class="close-modal"><i class="fa fa-times"></i></a></div>
-</div>
+    </div>
+    <div class="ajax-success-modal modal">
+        <div class="overlay"></div>
+        <div class="content col-xs-12">
+            <div class="ajax-left"><img class="ajax-product-image" alt="&nbsp;" src="#"
+                                        style="max-width:65px; max-height:100px"/></div>
+            <div class="ajax-right">
+                <p class="ajax-product-title"></p>
+                <p class="success-message btn-go-to-cart"><span style="color:#789629">&#10004;</span> Đã được thêm vào giỏ
+                    hàng.</p>
+                <div class="actions">
+                    <!--                <button class="button" onclick="window.location='cart'">Đi tới giỏ hàng</button>-->
+                    <!--                <button class="button" onclick="window.location='checkout'">Thanh toán</button>-->
+                </div>
+            </div>
+            <a href="javascript:void(0)" class="close-modal"><i class="fa fa-times"></i></a></div>
+    </div>
 
 </body>
 </html>

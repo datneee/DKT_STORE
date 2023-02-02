@@ -1,42 +1,67 @@
-<div class="content">
-    <div class="container">
-        <div class="row">
-            <div class="col-xs-12 col-md-9">
-                <!-- main -->
-                <div class="template-customer">
-                    <h1>Đăng nhập tài khoản</h1>
-                    <p>Nếu bạn có tài khoản xin vui lòng đăng nhập</p>
-                    <div class="row" style="margin-top:50px;">
-                        <div class="col-md-6">
-                            <div class="wrapper-form">
-                                <form method='POST' action="">
-                                    <p class="title"><span>Đăng nhập tài khoản</span></p>
-                                    <div class="form-group">
-                                        <label>Username:<b id="req">*</b></label>
-                                        <input type="text" class="input-control" name="username" required="">
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Mật khẩu:<b id="req">*</b></label>
-                                        <input type="password" class="input-control" name="password" required="">
-                                    </div>
-                                    <div style="margin: 8px 0; background: transparent;" class="alert-danger"><?php if ($mess) echo $mess ?></div>
-                                    <input type="submit" class="button" value="Đăng nhập">
-                                </form>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="wrapper-form">
-                                <p class="title"><span>Tạo tài khoản mới</span></p>
-                                <p>Đăng ký tài khoản để mua hàng nhanh hơn. Theo dõi đơn đặt hàng, vận chuyển. Cập nhật các sự kiện và chương trình giảm giá của chúng tôi.</p>
-                                <a href="?page=register" class="button">Đăng ký</a> </div>
-                        </div>
-                    </div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Khóa Học Lập Trình Laravel Framework 5.x Tại Khoa Phạm">
+    <meta name="author" content="">
+
+    <title>Admin - Khoa Phạm</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="public/backend/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- MetisMenu CSS -->
+    <link href="public/backend/bower_components/metisMenu/dist/metisMenu.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="public/backend/dist/css/sb-admin-2.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="public/backend/bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+</head>
+
+<body>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-4 col-md-offset-4">
+            <div class="login-panel panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Please Sign In</h3>
                 </div>
-                <!-- end main -->
+                <div class="panel-body">
+                    <form role="form" action="" method="POST">
+                        <fieldset>
+                            <div class="form-group">
+                                <input class="form-control" placeholder="E-mail" name="email" type="email" autofocus>
+                            </div>
+                            <div class="form-group">
+                                <input class="form-control" placeholder="Password" name="password" type="password" value="">
+                            </div>
+                            <button type="submit" class="btn btn-lg btn-success btn-block">Login</button>
+                        </fieldset>
+                    </form>
+                </div>
             </div>
         </div>
-
-
     </div>
 </div>
 
+<!-- jQuery -->
+<script src="public/backend/bower_components/jquery/dist/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="public/backend/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
+<!-- Metis Menu Plugin JavaScript -->
+<script src="public/backend/bower_components/metisMenu/dist/metisMenu.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="public/backend/dist/js/sb-admin-2.js"></script>
+
+</body>
+
+</html>
