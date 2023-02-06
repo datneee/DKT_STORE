@@ -1,5 +1,4 @@
 <?php
-$rou = $route;
 if (isset($_SESSION["username"])) {
     $db = new Database();
     $user_email = $_SESSION["username"];
@@ -49,7 +48,7 @@ if (isset($_SESSION["username"])) {
     <meta charset="utf-8">
     <link rel="stylesheet" type="text/css" href="public/backend/css/bootstrap.css">
 
-    <link rel="canonical" href="index.html">
+    <link rel="canonical" href="home">
     <link rel="shortcut icon"
           href="../../public/frontend/100/047/633/themes/517833/assets/favicon221b.png?1481775169361"
           type="image/x-icon"/>
@@ -108,7 +107,7 @@ if (isset($_SESSION["username"])) {
     <div class="mid-header">
         <div class="container">
             <div class="row">
-                <div class="col-xs-12 col-sm-12 col-md-3 logo "> <a href="index.html"> <img src="public/frontend/100/047/633/themes/517833/assets/logo221b.png?1481775169361" alt="DKT Store" title="DKT Store" class="img-responsive"> </a> </div>
+                <div class="col-xs-12 col-sm-12 col-md-3 logo "> <a href="home"> <img src="public/frontend/100/047/633/themes/517833/assets/logo221b.png?1481775169361" alt="DKT Store" title="DKT Store" class="img-responsive"> </a> </div>
                 <div class="col-xs-12 col-sm-12 col-md-6 header-search">
                     <form method="GET" action="search">
                         <input type="text" value="" placeholder="Nhập từ khóa tìm kiếm..." name="query" class="input-control">
@@ -155,14 +154,14 @@ if (isset($_SESSION["username"])) {
         <div class="container">
             <div class="clearfix">
                 <ul class="main-nav hidden-xs hidden-sm list-unstyled">
-                    <?php if($rou == "home") { ?> <li class="active"><a href="index.html">Trang chủ</a></li> <?php } else { ?> <li class=""><a href="index.html">Trang chủ</a></li> <?php } ?>
-                    <?php if($rou == "gioi-thieu") { ?> <li class="active" ><a href="introduction">Giới thiệu</a></li> <?php } else { ?> <li class="" ><a href="introduction">Giới thiệu</a></li> <?php } ?>
-                    <?php if($rou == "tin-tuc") { ?> <li class="active" ><a href="news">Tin tức</a></li> <?php } else { ?>  <li class="" ><a href="news">Tin tức</a></li> <?php } ?>
-                    <?php if($rou == "contact") { ?> <li class="active" ><a href="contact">Liên hệ</a></li> <?php } else { ?> <li class="" ><a href="contact">Liên hệ</a></li> <?php } ?>
+                    <?php if($controller == "/home.php") { ?> <li class="active"><a href="home">Trang chủ</a></li> <?php } else { ?> <li class=""><a href="home">Trang chủ</a></li> <?php } ?>
+                    <?php if($controller == "/introduction.php") { ?> <li class="active" ><a href="introduction">Giới thiệu</a></li> <?php } else { ?> <li class="" ><a href="introduction">Giới thiệu</a></li> <?php } ?>
+                    <?php if($controller == "/news.php") { ?> <li class="active" ><a href="news">Tin tức</a></li> <?php } else { ?>  <li class="" ><a href="news">Tin tức</a></li> <?php } ?>
+                    <?php if($controller == "/contact.php") { ?> <li class="active" ><a href="contact">Liên hệ</a></li> <?php } else { ?> <li class="" ><a href="contact">Liên hệ</a></li> <?php } ?>
                 </ul>
                 <a href="javascript:void(0);" class="toggle-main-menu hidden-md hidden-lg"> <i class="fa fa-bars"></i> </a>
                 <ul class="list-unstyled mobile-main-menu hidden-md hidden-lg" style="display:none">
-                    <li><a href="index.html">Trang chủ</a></li>
+                    <li><a href="home">Trang chủ</a></li>
                     <li><a href="gioi-thieu">Giới thiệu</a></li>
                     <li><a href="collections/all">Sản phẩm</a>
                         <ul style="display:none">
@@ -246,87 +245,14 @@ if (isset($_SESSION["username"])) {
                     <!--Content -->
 
                     <?php
-                    switch ($rou) {
-                        case 'home':
-                            if (file_exists("Controller/Client/content_layout.php"))
-                                include "Controller/Client/content_layout.php";
-                            break;
-                        case 'search':
-                            if (file_exists("Controller/Client/search.php"))
-                                include "Controller/Client/search.php";
-                            break;
-                        case 'product':
-                            if (file_exists("Controller/Client/productDetail.php"))
-                                include "Controller/Client/productDetail.php";
-                            break;
-                        case 'cart':
-                            if (file_exists("Controller/Client/cart.php"))
-                                include "Controller/Client/cart.php";
-                            break;
-                        case 'checkout':
-                            if (file_exists("Controller/Client/checkout.php"))
-                                include "Controller/Client/checkout.php";
-                            break;
-                        case 'checkout-submit':
-                            if (file_exists("Controller/Client/checkoutSubmit.php"))
-                                include "Controller/Client/checkoutSubmit.php";
-                            break;
-                        case 'categories':
-                            if (file_exists("Controller/Client/products.php"))
-                                include "Controller/Client/products.php";
-                            break;
-                        case 'gioi-thieu':
-                            if (file_exists("Controller/Client/gioiThieu.php"))
-                                include "Controller/Client/gioiThieu.php";
-                            break;
-                        case 'contact':
-                            if (file_exists("Controller/Client/contact.php"))
-                                include "Controller/Client/contact.php";
-                            break;
-                        case 'tin-tuc':
-                            if (file_exists("Controller/Client/tinTuc.php"))
-                                include "Controller/Client/tinTuc.php";
-                            break;
-                        case 'login':
-                            if (file_exists("Controller/Client/login.php"))
-                                include "Controller/Client/login.php";
-                            break;
-                        case 'register':
-                            if (file_exists("Controller/Client/register.php"))
-                                include "Controller/Client/register.php";
-                            break;
-                        case 'logout':
-                            if (file_exists("Controller/Client/logout.php"))
-                                include "Controller/Client/logout.php";
-                            break;
-                        case '404':
-                            echo "Trang không tồn tại !";
-                            break;
-                        default:
-                            break;
+                        if (file_exists("Controller/Client/$controller")) {
+                            include "Controller/Client/$controller";
+                        } else {
+                            include "View/admin/404.php";
+                        }
 
-                    }
+
                     ?>
-
-                    <!-- Hot product -->
-                    <?php
-                    //if (file_exists("Controller/Client/hotProduct.php"))
-                    //include "Controller/Client/hotProduct.php";
-                    ?>
-
-                    <!-- Featured product -->
-
-
-                    <?php
-                    //if (file_exists("Controller/Client/featuredProduct.php")) {
-                    //include  "Controller/Client/featuredProduct.php";
-                    //}
-                    ?>
-
-                    <!--End content -->
-
-
-                    <!-- end main -->
                 </div>
 
             </div>
@@ -368,7 +294,7 @@ if (isset($_SESSION["username"])) {
                         <div class="col-xs-12 col-sm-3">
                             <h3>Về chúng tôi</h3>
                             <ul class="list-unstyled">
-                                <li><a href="index.html">Trang chủ</a></li>
+                                <li><a href="home">Trang chủ</a></li>
                                 <li><a href="gioi-thieu">Giới thiệu</a></li>
                                 <li><a href="tin-tuc">Tin tức</a></li>
                                 <li><a href="gioi-thieu">Liên hệ</a></li>
@@ -411,7 +337,7 @@ if (isset($_SESSION["username"])) {
                         <div class="col-xs-12 col-sm-5"> © Bản quyền thuộc về Avent Team</div>
                         <div class="col-xs-12 col-sm-7">
                             <ul class="list-unstyled">
-                                <li><a href="index.html">Trang chủ</a></li>
+                                <li><a href="home">Trang chủ</a></li>
                                 <li><a href="gioi-thieu">Giới thiệu</a></li>
                                 <li><a href="collections/all">Sản phẩm</a></li>
                                 <li><a href="tin-tuc">Tin tức</a></li>

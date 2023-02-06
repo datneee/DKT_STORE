@@ -5,10 +5,9 @@
         public $pageController;
         public function __construct()
         {
-
             while (!$this->pageController == "404" ) {
 
-                if (URL == "/admin" || explode('?',PATH)[0] == '/admin') {
+                if (URL == "/admin" || explode('?',PATH)[0] == '/admin' || explode('/',PATH)[1] == 'admin') {
                     if (isset($_GET["action"])) {
                         $this->pageController =  $_GET["action"];
                     } else {

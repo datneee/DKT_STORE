@@ -1,9 +1,3 @@
-
-<?php
-
-    if (isset($_SESSION["admin"])) {
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -56,11 +50,11 @@
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                     <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
                 </a>
-                <ul class="dropdown-menu dropdown-user" style="left: 0;">
+                <ul class="dropdown-menu dropdown-user">
                     <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
                     </li>
                     <li class="divider"></li>
-                    <li><a href="?action=admin-logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                    <li><a href="admin/logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                     </li>
                 </ul>
                 <!-- /.dropdown-user -->
@@ -90,10 +84,10 @@
                         <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Category<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
-                                <a href="#">List Category</a>
+                                <a href="?controller=categories">List Category</a>
                             </li>
                             <li>
-                                <a href="#">Add Category</a>
+                                <a href="?controller=categories&action=add">Add Category</a>
                             </li>
                         </ul>
                         <!-- /.nav-second-level -->
@@ -102,10 +96,10 @@
                         <a href="#"><i class="fa fa-cube fa-fw"></i> Product<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
-                                <a href="#">List Product</a>
+                                <a href="?controller=products">List Product</a>
                             </li>
                             <li>
-                                <a href="#">Add Product</a>
+                                <a href="?controller=products&action=add">Add Product</a>
                             </li>
                         </ul>
                         <!-- /.nav-second-level -->
@@ -114,10 +108,10 @@
                         <a href="#"><i class="fa fa-users fa-fw"></i> User<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
-                                <a href="#">List User</a>
+                                <a href="?controller=users">List User</a>
                             </li>
                             <li>
-                                <a href="#">Add User</a>
+                                <a href="?controller=users&action=add">Add User</a>
                             </li>
                         </ul>
                         <!-- /.nav-second-level -->
@@ -130,15 +124,11 @@
     </nav>
 
     <!-- Page Content -->
-    <div id="page-wrapper">
+    <div id="page-wrapper" style="margin: 0">
         <?php
-            switch ($route) {
-                case 'admin':
-                    if (file_exists("Controller/admin/home.php"))
-                        include "Controller/admin/home.php";
-                    break;
-
-        }
+            if(file_exists("Controller/admin/$controller")) {
+                include "Controller/admin/$controller";
+            }else
         ?>
 
         <!-- /.container-fluid -->
@@ -175,11 +165,5 @@
 </body>
 
 </html>
-<?php } else { ?>
-<?php
-    if (file_exists("Controller/admin/login.php"))  {
-        include  "Controller/admin/login.php";
-        }
-    }
-?>
+
 

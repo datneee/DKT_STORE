@@ -10,32 +10,25 @@
             <!-- /.col-lg-12 -->
             <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                 <thead>
+
                 <tr align="center">
                     <th>ID</th>
                     <th>Name</th>
-                    <th>Category Parent</th>
-                    <th>Status</th>
+                    <th>Description</th>
                     <th>Delete</th>
                     <th>Edit</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr class="odd gradeX" align="center">
-                    <td>1</td>
-                    <td>Tin Tức</td>
-                    <td>None</td>
-                    <td>Hiện</td>
-                    <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="#"> Delete</a></td>
-                    <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="#">Edit</a></td>
-                </tr>
-                <tr class="even gradeC" align="center">
-                    <td>2</td>
-                    <td>Bóng Đá</td>
-                    <td>Thể Thao</td>
-                    <td>Ẩn</td>
-                    <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="#"> Delete</a></td>
-                    <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="#">Edit</a></td>
-                </tr>
+                <?php foreach ($categories as $category) { ?>
+                    <tr class="odd gradeX" align="center">
+                        <td><?php echo $category["pk_category_product_id"] ?></td>
+                        <td><?php echo $category["c_name"] ?></td>
+                        <td><?php echo $category["c_description"] ?></td>
+                        <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="?controller=categories&action=delele&id=<?php echo $category["pk_category_product_id"]  ?>"> Delete</a></td>
+                        <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="?controller=categories&action=edit&id=<?php echo $category["pk_category_product_id"]  ?>">Edit</a></td>
+                    </tr>
+                <?php } ?>
                 </tbody>
             </table>
         </div>

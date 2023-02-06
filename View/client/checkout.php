@@ -96,10 +96,10 @@
                     </div>
                     <hr class="mb-4">
                     <?php if (!isset($_GET["product-one"])) { ?>
-                        <a href="checkout-submit" class="btn btn-primary btn-lg btn-block" type="submit" name="btnDatHang">Đặt
+                        <a href="checkoutSubmit" class="btn btn-primary btn-lg btn-block" type="submit" name="btnDatHang">Đặt
                             hàng</a>
                     <?php } else { ?>
-                        <a href="checkout-submit?product-one=<?php echo $_GET["product-one"] ?>" class="btn btn-primary btn-lg btn-block" type="submit" name="btnDatHang">Đặt
+                        <a href="checkoutSubmit?product-one=<?php echo $_GET["product-one"] ?>" class="btn btn-primary btn-lg btn-block" type="submit" name="btnDatHang">Đặt
                             hàng</a>
                     <?php } ?>
                 </div>

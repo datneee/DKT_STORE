@@ -54,7 +54,6 @@ if (isset($_SESSION["user"])) {
             if ($checkOut) {
                 unset($_SESSION['carts']);
                 $message = "Đơn hàng của bạn đã được gửi đi, đang chờ confirm từ người bán ...";
-                header("location:checkout-submit");
             } else {
                 $message = "Đã xảy ra lỗi trong khi thanh toán, vui lòng thử lại !";
             }

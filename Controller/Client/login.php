@@ -19,7 +19,7 @@
                 $_SESSION["customerId"] = $user->customer_id;
                 $_SESSION["user"] = $user;
                 $_SESSION['carts'] = array();
-                header("location:index.php");
+                header("location:home");
             } else {
                 $mess = "Mật khẩu không chính xác !";
                 header("loacation:?page=login");

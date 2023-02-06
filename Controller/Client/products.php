@@ -6,7 +6,7 @@
     $products = array();
     $paging = isset($_GET["pagination"]) ? $_GET["pagination"]  + 1 : 1;
     $letPage = isset($_GET["pagination"]) ? $_GET["pagination"] * $limits + 1 : 1;
-    $categoryId = isset($_GET["category"]) ? $_GET["category"] : -1;
+    $categoryId = isset($_GET["category"]) ? $_GET["category"] : 1;
 
     $queryGetCategoryById = "SELECT * FROM `tbl_category_product` u WHERE u.pk_category_product_id = '$categoryId' ";
     $result = mysqli_query($db->connection, $queryGetCategoryById);
