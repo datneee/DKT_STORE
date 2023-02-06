@@ -12,29 +12,39 @@
                 <form action="" method="POST">
                     <div class="form-group">
                         <label>Username</label>
-                        <input class="form-control" name="txtUser" value="quoctuan" disabled />
+                        <input class="form-control" disabled value="<?php echo $user->c_username ?>" name="txtUser" placeholder="Please Enter Username" />
+                    </div>
+                    <div class="form-group">
+                        <label>FullName</label>
+                        <input class="form-control" name="txtFName" value="<?php echo $user->c_fullname ?>" placeholder="Please Enter FullName" />
+                    </div>
+                    <div class="form-group">
+                        <label>Phone</label>
+                        <input class="form-control" name="txtPhone" value="<?php echo $user->c_phone ?>" placeholder="Please Enter Phone number" />
                     </div>
                     <div class="form-group">
                         <label>Password</label>
-                        <input type="password" class="form-control" name="txtPass" placeholder="Please Enter Password" />
-                    </div>
-                    <div class="form-group">
-                        <label>RePassword</label>
-                        <input type="password" class="form-control" name="txtRePass" placeholder="Please Enter RePassword" />
+                        <input type="password" class="form-control" value="<?php echo $user->c_password ?>" name="txtPass" placeholder="Please Enter Password" />
                     </div>
                     <div class="form-group">
                         <label>Email</label>
-                        <input type="email" class="form-control" name="txtEmail" placeholder="Please Enter Email" />
+                        <input type="email" class="form-control" name="txtEmail" value="<?php echo $user->c_email ?>" placeholder="Please Enter Email" />
                     </div>
                     <div class="form-group">
                         <label>User Level</label>
                         <label class="radio-inline">
-                            <input name="rdoLevel" value="1" checked="" type="radio">Admin
+                            <input name="rdoLevel" value="admin" checked="<?php echo $user->c_role == 'admin' ? "true" : "" ?>"  type="radio">Admin
                         </label>
                         <label class="radio-inline">
-                            <input name="rdoLevel" value="2" type="radio">Member
+                            <input name="rdoLevel" value="client" checked="<?php echo $user->c_role == 'client' ? "true" : "" ?>" type="radio">Member
                         </label>
                     </div>
+                    <?php if ($message)  { ?>
+                        <div class="alert-success" style="margin: 8px 0;"><?php echo $message ?></div>
+                    <?php } ?>
+                    <?php if ($error)  { ?>
+                        <div class="alert-warning" style="margin: 8px 0;"><?php echo $error ?></div>
+                    <?php } ?>
                     <button type="submit" class="btn btn-default">User Edit</button>
                     <button type="reset" class="btn btn-default">Reset</button>
                     <form>

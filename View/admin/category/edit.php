@@ -10,27 +10,12 @@
             <div class="col-lg-7" style="padding-bottom:120px">
                 <form action="" method="POST">
                     <div class="form-group">
-                        <label>Category Parent</label>
-                        <select class="form-control">
-                            <option value="0">Please Choose Category</option>
-                            <option value="">Tin Tức</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
                         <label>Category Name</label>
-                        <input class="form-control" name="txtCateName" placeholder="Please Enter Category Name" />
-                    </div>
-                    <div class="form-group">
-                        <label>Category Order</label>
-                        <input class="form-control" name="txtOrder" placeholder="Please Enter Category Order" />
-                    </div>
-                    <div class="form-group">
-                        <label>Category Keywords</label>
-                        <input class="form-control" name="txtOrder" placeholder="Please Enter Category Keywords" />
+                        <input value="<?php echo $category->c_name?>" class="form-control" name="txtCateName" placeholder="Please Enter Category Name" />
                     </div>
                     <div class="form-group">
                         <label>Category Description</label>
-                        <textarea class="form-control" rows="3"></textarea>
+                        <input value="<?php echo $category->c_description?>" class="form-control" name="txtDes" placeholder="Please Enter Category Order" />
                     </div>
                     <div class="form-group">
                         <label>Category Status</label>
@@ -38,12 +23,18 @@
                             <input name="rdoStatus" value="1" checked="" type="radio">Visible
                         </label>
                         <label class="radio-inline">
-                            <input name="rdoStatus" value="2" type="radio">Invisible
+                            <input name="rdoStatus" value="0" type="radio">Invisible
                         </label>
                     </div>
+                    <?php if ($message)  { ?>
+                        <div class="alert-success" style="margin: 8px 0;"><?php echo $message ?></div>
+                    <?php } ?>
+                    <?php if ($error)  { ?>
+                        <div class="alert-warning" style="margin: 8px 0;"><?php echo $error ?></div>
+                    <?php } ?>
                     <button type="submit" class="btn btn-default">Category Edit</button>
                     <a href="?controller=categories" class="btn btn-default">Back to list</a>
-                    <form>
+                <form>
             </div>
         </div>
         <!-- /.row -->

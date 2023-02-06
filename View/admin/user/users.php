@@ -14,6 +14,7 @@
                     <th>ID</th>
                     <th>Username</th>
                     <th>FullName</th>
+                    <th>Phone</th>
                     <th>Password</th>
                     <th>Role</th>
                     <th>Delete</th>
@@ -26,10 +27,11 @@
                         <td><?php echo  $user["pk_user_id"] ?></td>
                         <td><?php echo $user["c_username"] ?></td>
                         <td><?php echo $user["c_fullname"] ?></td>
+                        <td><?php echo $user["c_phone"] ?></td>
                         <td><?php echo $user["c_password"] ?></td>
                         <td><?php echo $user["c_role"] ?></td>
-                        <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="?controller=products&action=delele&id=<?php echo $user["pk_user_id"]  ?>"> Delete</a></td>
-                        <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="?controller=products&action=edit&id=<?php echo $user["pk_user_id"]  ?>">Edit</a></td>
+                        <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a onclick="return window.confirm('Confirm delete user ?');" href="?controller=users&action=delete&id=<?php echo $user["pk_user_id"]  ?>"> Delete</a></td>
+                        <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="?controller=users&action=edit&id=<?php echo $user["pk_user_id"]  ?>">Edit</a></td>
                     </tr>
                 <?php } ?>
                 </tbody>

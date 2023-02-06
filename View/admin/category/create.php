@@ -16,7 +16,7 @@
                     </div>
                     <div class="form-group">
                         <label>Category Description</label>
-                        <textarea class="form-control" rows="3"></textarea>
+                        <textarea name="txtDes" class="form-control" rows="3"></textarea>
                     </div>
                     <div class="form-group">
                         <label>Category Status</label>
@@ -24,9 +24,15 @@
                             <input name="rdoStatus" value="1" checked="" type="radio">Visible
                         </label>
                         <label class="radio-inline">
-                            <input name="rdoStatus" value="2" type="radio">Invisible
+                            <input name="rdoStatus" value="0" type="radio">Invisible
                         </label>
                     </div>
+                    <?php if ($message)  { ?>
+                        <div class="alert-success" style="margin: 8px 0;"><?php echo $message ?></div>
+                    <?php } ?>
+                    <?php if ($error)  { ?>
+                        <div class="alert-warning" style="margin: 8px 0;"><?php echo $error ?></div>
+                    <?php } ?>
                     <button type="submit" class="btn btn-default">Category Add</button>
                     <a href="?controller=categories" class="btn btn-default">Back to list</a>
                     <form>

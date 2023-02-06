@@ -21,15 +21,20 @@
                     </div>
                     <div class="form-group">
                         <label>Name</label>
-                        <input class="form-control" name="txtName" placeholder="Please Enter Username" />
+                        <input class="form-control" name="txtName" placeholder="Please Enter Name" />
                     </div>
                     <div class="form-group">
-                        <label>Price</label>
-                        <input class="form-control" name="txtPrice" placeholder="Please Enter Password" />
+                        <label>Hot product</label>
+                        <label class="radio-inline">
+                            <input name="rdoStatus" value="1" checked="" type="radio">Hot
+                        </label>
+                        <label class="radio-inline">
+                            <input name="rdoStatus" value="0" type="radio">Non-hot
+                        </label>
                     </div>
                     <div class="form-group">
                         <label>Product Description</label>
-                        <textarea class="form-control" rows="3" name="txtIntro"></textarea>
+                        <textarea class="form-control" rows="3" name="txtDes"></textarea>
                     </div>
                     <div class="form-group">
                         <label>Content</label>

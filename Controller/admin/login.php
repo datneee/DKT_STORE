@@ -13,7 +13,6 @@
                 $user = $data;
             }
         }
-        echo var_export($user);
         if ($user) {
             if ($user->c_password == md5($c_password)) {
                 $_SESSION["admin"] = $user;

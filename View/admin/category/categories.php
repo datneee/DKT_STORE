@@ -25,8 +25,8 @@
                         <td><?php echo $category["pk_category_product_id"] ?></td>
                         <td><?php echo $category["c_name"] ?></td>
                         <td><?php echo $category["c_description"] ?></td>
-                        <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="?controller=categories&action=delele&id=<?php echo $category["pk_category_product_id"]  ?>"> Delete</a></td>
-                        <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="?controller=categories&action=edit&id=<?php echo $category["pk_category_product_id"]  ?>">Edit</a></td>
+                        <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a onclick="return window.confirm('Confirm delete category ?');" href="?controller=categories&action=delete&id=<?php echo $category["pk_category_product_id"]  ?>"> Delete</a></td>
+                        <td class="center"><i class="fa fa-pencil fa-fw"></i> <a  href="?controller=categories&action=edit&id=<?php echo $category["pk_category_product_id"]  ?>">Edit</a></td>
                     </tr>
                 <?php } ?>
                 </tbody>

@@ -15,6 +15,14 @@
                         <input class="form-control" name="txtUser" placeholder="Please Enter Username" />
                     </div>
                     <div class="form-group">
+                        <label>FullName</label>
+                        <input class="form-control" name="txtFName" placeholder="Please Enter FullName" />
+                    </div>
+                    <div class="form-group">
+                        <label>Phone</label>
+                        <input class="form-control" name="txtPhone" placeholder="Please Enter Phone number" />
+                    </div>
+                    <div class="form-group">
                         <label>Password</label>
                         <input type="password" class="form-control" name="txtPass" placeholder="Please Enter Password" />
                     </div>
@@ -29,12 +37,18 @@
                     <div class="form-group">
                         <label>User Level</label>
                         <label class="radio-inline">
-                            <input name="rdoLevel" value="1" checked="" type="radio">Admin
+                            <input name="rdoLevel" value="admin" checked="" type="radio">Admin
                         </label>
                         <label class="radio-inline">
-                            <input name="rdoLevel" value="2" type="radio">Member
+                            <input name="rdoLevel" value="client" type="radio">Member
                         </label>
                     </div>
+                    <?php if ($message)  { ?>
+                        <div class="alert-success" style="margin: 8px 0;"><?php echo $message ?></div>
+                    <?php } ?>
+                    <?php if ($error)  { ?>
+                        <div class="alert-warning" style="margin: 8px 0;"><?php echo $error ?></div>
+                    <?php } ?>
                     <button type="submit" class="btn btn-default">User Add</button>
                     <button type="reset" class="btn btn-default">Reset</button>
                     <form>

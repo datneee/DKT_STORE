@@ -54,7 +54,7 @@
                     <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
                     </li>
                     <li class="divider"></li>
-                    <li><a href="admin/logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                    <li><a href="admin?controller=logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                     </li>
                 </ul>
                 <!-- /.dropdown-user -->
@@ -128,7 +128,9 @@
         <?php
             if(file_exists("Controller/admin/$controller")) {
                 include "Controller/admin/$controller";
-            }else
+            }else {
+                include "View/admin/404.php";
+            }
         ?>
 
         <!-- /.container-fluid -->
