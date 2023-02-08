@@ -2,7 +2,7 @@
     $db = new Database();
     $limits = 2;
     $paging = isset($_GET["pagination"]) ? $_GET["pagination"]  + 1 : 1;
-    $letPage = isset($_GET["pagination"]) ? $_GET["pagination"] * $limits + 1 : 1;
+    $letPage = isset($_GET["pagination"]) ? $_GET["pagination"] * $limits  : 0;
     $id = $_SESSION["customerId"];
     $query = "SELECT * FROM `tbl_order`  WHERE customer_id = $id ";
     $m_result = mysqli_query($db->connection, $query);

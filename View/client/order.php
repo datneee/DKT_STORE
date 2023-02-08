@@ -35,6 +35,7 @@
                             <th>Product Content</th>
                             <th>Product Image</th>
                             <th>Product Price</th>
+                            <th>Quantity</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -46,6 +47,7 @@
                                 <td><?php echo $item["product"]->c_content ?></td>
                                 <td><img width="80px" class="img-thumbnail" src="public/upload/product/<?php echo $item["product"]->c_img ?>"></td>
                                 <td><?php echo $item["product"]->c_price ?></td>
+                                <td><?php echo $item["c_number"] ?></td>
                             </tr>
                         <?php } ?>
                         </tbody>
@@ -61,7 +63,7 @@
                 <ul class="pagination pull-right" style="margin-top: 0px !important">
                     <li><a >Trang</a></li>
                     <?php
-                    for ($i = 0; $i < $pages; ++$i) {
+                    for ($i = 0; $i <= $pages; ++$i) {
                         if ($i + 1 == $paging) {
 
                             ?>

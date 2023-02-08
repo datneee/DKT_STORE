@@ -14,9 +14,9 @@
                     mysqli_close($db->connection);
                     echo "<script type='text/javascript'>alert('Change password successfully, please login again !')</script>";
                     require "Controller/admin/logout.php";
-                } else {
-                    $message = "Mật khẩu không chính xác !";
                 }
+            }else {
+                echo "<script type='text/javascript'>alert('Password incorrect !')</script>";
             }
     }
     include "View/admin/user/profile.php";
