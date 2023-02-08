@@ -33,10 +33,10 @@
                     <div class="form-group">
                         <label>User Level</label>
                         <label class="radio-inline">
-                            <input name="rdoLevel" value="admin" checked="<?php echo $user->c_role == 'admin' ? "true" : "" ?>"  type="radio">Admin
+                            <input name="rdoLevel" value="admin" <?php echo $user->c_role == 'admin' ? "checked" : "" ?>  type="radio">Admin
                         </label>
                         <label class="radio-inline">
-                            <input name="rdoLevel" value="client" checked="<?php echo $user->c_role == 'client' ? "true" : "" ?>" type="radio">Member
+                            <input name="rdoLevel" value="client" <?php echo $user->c_role == 'client' ? "checked" : "" ?> type="radio">Member
                         </label>
                     </div>
                     <?php if ($message)  { ?>
@@ -46,7 +46,7 @@
                         <div class="alert-warning" style="margin: 8px 0;"><?php echo $error ?></div>
                     <?php } ?>
                     <button type="submit" class="btn btn-default">User Edit</button>
-                    <button type="reset" class="btn btn-default">Reset</button>
+                    <a href="?controller=users"  class="btn btn-default">Go to list</a>
                     <form>
             </div>
         </div>

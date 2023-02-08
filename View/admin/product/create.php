@@ -9,13 +9,12 @@
             </div>
             <!-- /.col-lg-12 -->
             <div class="col-lg-7" style="padding-bottom:120px">
-                <form action="" method="POST">
+                <form action="" method="POST" enctype="multipart/form-data">
                     <div class="form-group">
                         <label>Category Parent</label>
-                        <select class="form-control">
-                            <option value="0">Please Choose Category</option>
+                        <select class="form-control" name="category">
                             <?php foreach ($categories as $category) { ?>
-                                <option value="<?php echo $category["pk_category_product_id"] ?>"><?php echo $category["c_name"]?></option>
+                                <option  value="<?php echo $category["pk_category_product_id"] ?>"><?php echo $category["c_name"]?></option>
                             <?php } ?>
                         </select>
                     </div>
@@ -42,7 +41,8 @@
                     </div>
                     <div class="form-group">
                         <label>Images</label>
-                        <input type="file" name="fImages">
+                        <input type="file" name="fImages" onchange="handleChangeImage(event)">
+                        <img id="image" src="" class="img-thumbnail" width="80px;">
                     </div>
                     <div class="form-group">
                         <label>Product price</label>
@@ -59,3 +59,10 @@
     <!-- /.container-fluid -->
 </div>
 <!-- /#page-wrapper -->
+<script type="text/javascript">
+    function handleChangeImage(event) {
+        var imgPath = URL.createObjectURL(event.target.files[0]);
+
+        document.getElementById("image").src = imgPath;
+    }
+</script>

@@ -25,13 +25,13 @@
                     foreach ($slides as $slide) {
                         if ($slide["pk_slide_id"] == 1) {
                 ?>
-                    <div class="item active"><img src="<?php echo $slide["c_img"] ?>"
+                    <div class="item active"><img src="public/frontend/images/<?php echo $slide["c_img"] ?>"
                                               alt="Los Angeles">
                     </div>
                 <?php
                         } else {
                 ?>
-                    <div class="item"><img src="<?php echo $slide["c_img"] ?>"
+                    <div class="item"><img src="public/frontend/images/<?php echo $slide["c_img"] ?>"
                                        alt="Los Angeles">
                     </div>
                 <?php

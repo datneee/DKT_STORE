@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Khóa Học Lập Trình Laravel Framework 5.x Tại Khoa Phạm">
     <meta name="author" content="">
-    <title>Admin - <?php echo $_SESSION["admin"]->c_fullname ?></title>
+    <title><?php echo $_SESSION["admin"]->c_role ?> - <?php echo $_SESSION["admin"]->c_fullname ?></title>
 
     <!-- Bootstrap Core CSS -->
     <link href="public/backend/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -40,7 +40,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="admin">Admin Area - <?php echo $_SESSION["admin"]->c_fullname ?></a>
+            <a class="navbar-brand" href="admin"><?php echo $_SESSION["admin"]->c_role ?> Area - <?php echo $_SESSION["admin"]->c_fullname ?></a>
         </div>
         <!-- /.navbar-header -->
 
@@ -51,7 +51,7 @@
                     <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
                 </a>
                 <ul class="dropdown-menu dropdown-user">
-                    <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
+                    <li><a href="admin?controller=users&action=profile"><i class="fa fa-user fa-fw"></i> User Profile</a>
                     </li>
                     <li class="divider"></li>
                     <li><a href="admin?controller=logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
@@ -79,6 +79,30 @@
                     </li>
                     <li>
                         <a href="/admin"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-paper-plane fa-fw"></i> New<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a href="?controller=news">List New</a>
+                            </li>
+                            <li>
+                                <a href="?controller=news&action=add">Add New</a>
+                            </li>
+                        </ul>
+                        <!-- /.nav-second-level -->
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-adn  fa-fw"></i> Banner<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a href="?controller=banners">List Banner</a>
+                            </li>
+                            <li>
+                                <a href="?controller=banners&action=add">Add Banner</a>
+                            </li>
+                        </ul>
+                        <!-- /.nav-second-level -->
                     </li>
                     <li>
                         <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Category<span class="fa arrow"></span></a>
@@ -112,6 +136,15 @@
                             </li>
                             <li>
                                 <a href="?controller=users&action=add">Add User</a>
+                            </li>
+                        </ul>
+                        <!-- /.nav-second-level -->
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-coffee fa-fw"></i> Order<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a href="?controller=orders">Order management</a>
                             </li>
                         </ul>
                         <!-- /.nav-second-level -->

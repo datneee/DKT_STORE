@@ -20,10 +20,10 @@
                     <div class="form-group">
                         <label>Category Status</label>
                         <label class="radio-inline">
-                            <input name="rdoStatus" value="1" checked="" type="radio">Visible
+                            <input name="rdoStatus" value="1" <?php echo $category->c_home == 1 ? "checked" : "" ?> type="radio">Visible
                         </label>
                         <label class="radio-inline">
-                            <input name="rdoStatus" value="0" type="radio">Invisible
+                            <input name="rdoStatus" value="0" <?php echo $category->c_home == 0 ? "checked" : "" ?> type="radio">Invisible
                         </label>
                     </div>
                     <?php if ($message)  { ?>

@@ -11,7 +11,7 @@
 
     $controller = parse_url(PATH)["path"];
     $controller = $controller == '/' ? "home" : $controller;
-    if ($controller != "/admin" && explode("/", $controller)[1] != "admin") {
+    if ($controller != "/admin" && explode("/", $controller)[0] != "admin") {
         if ($controller == "/categories")
             $controller = "products";
         if (isset($_GET["page"]))
@@ -19,7 +19,6 @@
         if (isset($_GET["product"]))
             $controller = "product";
         $controller = $controller != "" ? "$controller.php" : "";
-
         include "View/client/layout.php";
 
     } else {

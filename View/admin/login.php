@@ -41,6 +41,7 @@
                             <div class="form-group">
                                 <input class="form-control" placeholder="Password" name="password" type="password" value="">
                             </div>
+                            <div style="margin: 10px 0; padding: 4px 6px" class="alert-danger"><?php echo isset($_GET["error"]) ? $_GET["error"] : "" ?></div>
                             <button type="submit" class="btn btn-lg btn-success btn-block">Login</button>
                         </fieldset>
                     </form>

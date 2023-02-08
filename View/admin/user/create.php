@@ -50,7 +50,7 @@
                         <div class="alert-warning" style="margin: 8px 0;"><?php echo $error ?></div>
                     <?php } ?>
                     <button type="submit" class="btn btn-default">User Add</button>
-                    <button type="reset" class="btn btn-default">Reset</button>
+                    <a href="?controller=users" class="btn btn-default">Go to list</a>
                     <form>
             </div>
         </div>

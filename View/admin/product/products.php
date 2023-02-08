@@ -31,11 +31,12 @@
                         <td><?php echo $product["c_name"] ?></td>
                         <td><?php echo $product["c_description"] ?></td>
                         <td><?php echo $product["c_content"] ?></td>
+
                         <td><img width="100px" class="img-thumbnail" src="public/upload/product/<?php echo $product["c_img"] ?>"></td>
                         <td><?php echo $product["c_price"] ?></td>
-                        <td><?php echo $product["c_hotproduct"] ?></td>
-                        <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a onclick="return window.confirm('Confirm delete product ?');" href="?controller=products&action=delete&id=<?php echo $product["pk_product_id"]  ?>"> Delete</a></td>
-                        <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="?controller=products&action=edit&id=<?php echo $product["pk_product_id"]  ?>">Edit</a></td>
+                        <td><?php echo $product["c_hotproduct"] == 1 ? "Hot" : "Non-hot" ?></td>
+                        <td class="center"><i style="color: red" class="fa fa-trash-o  fa-fw"></i><a onclick="return window.confirm('Confirm delete product ?');" href="?controller=products&action=delete&id=<?php echo $product["pk_product_id"]  ?>"> Delete</a></td>
+                        <td class="center"><i style="color: #f0ad4e" class="fa fa-pencil fa-fw"></i> <a href="?controller=products&action=edit&id=<?php echo $product["pk_product_id"]  ?>">Edit</a></td>
                     </tr>
                 <?php } ?>
                 </tbody>

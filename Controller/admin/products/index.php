@@ -8,4 +8,5 @@
             $products[] = $data;
         }
     }
+
     include "View/admin/product/products.php";

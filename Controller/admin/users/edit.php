@@ -1,5 +1,5 @@
 <?php
-
+if ($_SESSION["admin"]->c_role == "admin") {
     $db = new Database();
     $id = isset($_GET["id"]) ? $_GET["id"] : "";
     $user = null;
@@ -33,3 +33,7 @@
 
     mysqli_close($db->connection);
     include "View/admin/user/edit.php";
+} else {
+    echo "<script type='text/javascript'>alert('Have not authorization !')</script>";
+    require "Controller/admin/users/index.php";
+}

@@ -97,7 +97,7 @@ if (isset($_SESSION["username"])) {
                     <div class="col-xs-12 col-sm-6 col-md-6 customer"> <a href="?page=login"><i class="fa fa-user"></i> Đăng nhập</a> <a href="?page=register"><i class="fa fa-user-plus"></i> Đăng ký</a> </div>
                 <?php } else { ?>
 
-                    <div style="display: flex; justify-content: end" class="col-xs-12 col-sm-6 col-md-6 customer"> <p><b><?php echo $user->hovaten ?></b></p> &nbsp; | &nbsp; <a href="?page=logout"><i class="fa fa-user"></i> Đăng xuất</a> </div>
+                    <div style="display: flex; justify-content: end" class="col-xs-12 col-sm-6 col-md-6 customer"><p style="cursor: pointer" ><a href="?page=order" style="text-decoration: none" class="btn-link"><b>Đơn hàng</b></a></p> &nbsp; |  <p><b><?php echo $user->hovaten ?></b></p> &nbsp; | &nbsp; <a href="?page=logout"><i class="fa fa-user"></i> Đăng xuất</a> </div>
                 <?php } ?>
             </div>
         </div>
@@ -248,7 +248,7 @@ if (isset($_SESSION["username"])) {
                         if (file_exists("Controller/Client/$controller")) {
                             include "Controller/Client/$controller";
                         } else {
-                            include "View/admin/404.php";
+                            include "View/client/404.php";
                         }
 
 
