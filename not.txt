@@ -1,0 +1,42 @@
+Các chức năng của website demo:
+
+
+1. Client
+	- Login
+	- Logout
+	1.1. Trang chủ
+	- Xem danh sách danh mục sản phẩm --
+	- Xem sản phẩm hot --
+	- Xem sản phẩm nổi bật -- 
+	- Slide banner --
+	- Xem số lượng sản phẩm có trong giỏ hàng 
+	- Slide tin tức	--
+	- Tìm kiếm theo tên
+	
+	1.2. Tin tức 
+	- Xem danh sách các tin tức
+	- Xem chi tiết tin tức
+	1.3. Sản phẩm
+	- Xem sản phẩm theo danh mục
+	- Xem chi tiết sản phẩm
+	- Mua sản phẩm
+	1.4. Chi tiết sản phẩm 
+	- Xem chi tiết sản phẩm
+	- Thêm sản phẩm vào giỏ hàng
+	1.5. Giỏ hàng
+	- Xem danh sách các sản phẩm trong giỏ hàng
+	- Update sản phẩm trong giỏ hàng ( Thêm / bớt / xóa )
+	- Mua hàng
+	
+	
+2. Admin
+	- Login
+	- Logout
+	- Quản lí user ( Chưa có ) 
+	- Quản lí danh mục ( Chưa có ) 
+	- Quản lí tin tức ( Chưa có )
+	- Quản lí banner quảng cáo
+	- Quản lí sản phẩm ( Chưa có )
+	- Quản lí đơn hàng 
+
+	
